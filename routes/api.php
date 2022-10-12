@@ -38,16 +38,27 @@ Route::middleware('auth:api')->group( function () {
     Route::post('oficinas',[ \App\Http\Controllers\API\OficinaController::class, 'store']);
     Route::put('oficinas/{id}',[ \App\Http\Controllers\API\OficinaController::class, 'update']);
 });
-Route::middleware('auth:api')->group( function () {
-    Route::get('citas',[ \App\Http\Controllers\API\CitaMedicaController::class, 'index']);
-    Route::get('citas/{id}',[ \App\Http\Controllers\API\CitaMedicaController::class, 'show']);
-    Route::post('citas',[ \App\Http\Controllers\API\CitaMedicaController::class, 'store']);
-    Route::put('citas/{id}',[ \App\Http\Controllers\API\CitaMedicaController::class, 'update']);
-});
+//Route::middleware('auth:api')->group( function () {
+//    Route::get('citas',[ \App\Http\Controllers\API\CitaMedicaController::class, 'index']);
+//    Route::get('citas/{id}',[ \App\Http\Controllers\API\CitaMedicaController::class, 'show']);
+//    Route::post('citas',[ \App\Http\Controllers\API\CitaMedicaController::class, 'store']);
+//    Route::put('citas/{id}',[ \App\Http\Controllers\API\CitaMedicaController::class, 'update']);
+//});
 
-Route::middleware('auth:api')->group( function () {
-    Route::get('diagnosticos',[ \App\Http\Controllers\API\DiagnosticoController::class, 'index']);
-    Route::get('diagnosticos/{id}',[ \App\Http\Controllers\API\DiagnosticoController::class, 'show']);
-    Route::post('diagnosticos',[ \App\Http\Controllers\API\DiagnosticoController::class, 'store']);
-    Route::put('diagnosticos/{id}',[ \App\Http\Controllers\API\DiagnosticoController::class, 'update']);
-});
+//Route::middleware('auth:api')->group( function () {
+//    Route::get('diagnosticos',[ \App\Http\Controllers\API\DiagnosticoController::class, 'index']);
+//    Route::get('diagnosticos/{diagnostico}',[ \App\Http\Controllers\API\DiagnosticoController::class, 'show']);
+//    Route::post('diagnosticos',[ \App\Http\Controllers\API\DiagnosticoController::class, 'store']);
+//    Route::put('diagnosticos/{diagnostico}',[ \App\Http\Controllers\API\DiagnosticoController::class, 'update']);
+//});
+
+
+Route::get('citas',[ \App\Http\Controllers\API\CitaMedicaController::class, 'index']);
+Route::get('citas/{citaMedica}',[ \App\Http\Controllers\API\CitaMedicaController::class, 'show']);
+Route::post('citas',[ \App\Http\Controllers\API\CitaMedicaController::class, 'store']);
+Route::put('citas/{citaMedica}',[ \App\Http\Controllers\API\CitaMedicaController::class, 'update']);
+
+Route::get('diagnosticos',[ \App\Http\Controllers\API\DiagnosticoController::class, 'index']);
+Route::get('diagnosticos/{diagnostico}',[ \App\Http\Controllers\API\DiagnosticoController::class, 'show']);
+Route::post('diagnosticos',[ \App\Http\Controllers\API\DiagnosticoController::class, 'store']);
+Route::put('diagnosticos/{diagnostico}',[ \App\Http\Controllers\API\DiagnosticoController::class, 'update']);

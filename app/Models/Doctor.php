@@ -13,9 +13,9 @@ class Doctor extends Model
         'nombres', 'apellidos', 'edad', 'genero', 'direccion', 'oficina_id','estado'
     ];
 
-    public function oficinas()
+    public function oficina(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->hasOne(Oficina::class);
+        return $this->belongsTo(Oficina::class);
     }
 
 }

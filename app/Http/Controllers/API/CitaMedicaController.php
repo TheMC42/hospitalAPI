@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CitaMedicasResource;
 use App\Models\CitaMedica;
+use App\Models\Paciente;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
 use Illuminate\Support\Facades\Validator;
@@ -12,34 +14,22 @@ class CitaMedicaController extends BaseController
 {
     public function index(Request $request)
     {
-        $term = $request->paciente_id ?? null;
-
-        $citas_medicas
-            = CitaMedica::paginate(10);
-
-        if ($term == null) {
-            return response()->json([
-                "success" => true,
-                "data" => $citas_medicas
-            ]);
-        }
-        return response()->json([
-            "success" => true,
-            "data" => $citas_medicas->where('paciente_id', $term)
-        ]);
-
-
+        return CitaMedicasResource::collection(
+            CitaMedica::with('paciente')->get()
+        );
     }
 
-    public function show($id)
+    public function show(CitaMedica $citaMedica)
     {
-        $cita = CitaMedica::find($id);
+//        $cita = CitaMedica::find($id);
+//
+//        if (is_null($cita)) {
+//            return $this->sendError('Cita not found.');
+//        }
+//
+//        return $this->sendResponse($cita, 'Cita retrieved successfully.');
 
-        if (is_null($cita)) {
-            return $this->sendError('Cita not found.');
-        }
-
-        return $this->sendResponse($cita, 'Cita retrieved successfully.');
+        return new CitaMedicasResource($citaMedica);
     }
 
     public function store(Request $request)

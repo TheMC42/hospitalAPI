@@ -16,6 +16,8 @@ class Paciente extends Model
     protected $fillable = [
         'nombres', 'apellidos', 'edad', 'genero','estado'
     ];
-
+//    public function cita(){
+//        return $this->hasMany(CitaMedica::class, 'id');
+//    }
 
 }

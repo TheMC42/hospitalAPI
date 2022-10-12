@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CitaMedicasResource;
+use App\Http\Resources\DiagnosticosResource;
 use App\Models\CitaMedica;
 use App\Models\Diagnostico;
 use Illuminate\Http\Request;
@@ -12,19 +14,9 @@ class DiagnosticoController extends Controller
 {
     public function index(Request $request)
     {
-        $term = $request->paciente_id ?? null;
-        $data = Diagnostico::paginate(10);
-
-        if ($term == null) {
-            return response()->json([
-                "success" => true,
-                "data" => $data
-            ]);
-        }
-        return response()->json([
-            "success" => true,
-            "data" => $data->where('paciente_id', $term)
-        ]);
+        return DiagnosticosResource::collection(
+            Diagnostico::with('paciente')->get()
+        );
     }
 
     public function show($id)

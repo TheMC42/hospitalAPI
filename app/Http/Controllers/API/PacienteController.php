@@ -13,7 +13,7 @@ class PacienteController extends BaseController
     public function index()
     {
 
-        $pacientes = Paciente::paginate(10);
+        $pacientes = Paciente::all();
         return response()->json([
             "success" => true,
             "data" => $pacientes

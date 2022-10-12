@@ -24,7 +24,7 @@ class CreateDoctorsTable extends Migration
             $table->string('nombres');
             $table->string('apellidos');
             $table->unsignedInteger('edad');
-            $table->foreignId('oficina_id')->constrained('oficinas');
+            $table->foreignId('oficina_id')->references('id')->on('oficinas');
             $table->string('direccion');
             $table->string('genero');
             $table->boolean('estado')->default(true);
@@ -32,14 +32,14 @@ class CreateDoctorsTable extends Migration
         });
         Schema::create('cita_medicas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('doctor_id')->constrained('doctors');
-            $table->foreignId('paciente_id')->constrained('pacientes');
+            $table->foreignId('doctor_id')->references('id')->on('doctors');
+            $table->foreignId('paciente_id')->references('id')->on('pacientes');
             $table->boolean('estado')->default(true);
             $table->timestamps();
         });
         Schema::create('diagnosticos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('paciente_id')->constrained('pacientes');
+            $table->foreignId('paciente_id')->references('id')->on('pacientes');
             $table->text('descripcion');
             $table->boolean('estado')->default(true);
             $table->timestamps();

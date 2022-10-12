@@ -11,9 +11,4 @@ class Oficina extends Model
     protected $fillable = [
         'tiempo_por_paciente', 'estado'
     ];
-
-    public function doctor()
-    {
-        return $this->belongsTo(Doctor::class);
-    }
 }
